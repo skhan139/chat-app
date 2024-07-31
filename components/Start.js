@@ -6,43 +6,44 @@ import {
   TouchableOpacity, 
   TextInput, 
   ImageBackground, 
-  KeyboardAvoidingView, 
-  Platform,
   Alert
 } from 'react-native';
 import { getAuth, signInAnonymously } from "firebase/auth";
-const Start = ({ navigation }) => {
-    const [name, setName] = useState('');
-    const colors = ['#090C08', '#474056', '#8A95A5', '#B9C6AE'];
-    const [background, setBackground] = useState('');
 
-    const signInUser = () => {
-      signInAnonymously(auth)
-        .then(result => {
-          navigation.navigate("Chat", { name: name, background: background, userID: result.user.uid });
-          Alert.alert("Signed in Successfully!");
-        })
-        .catch((error) => {
-          Alert.alert("Unable to sign in, try later again.");
-        })
-  }
- return (
-   <View style={styles.container}>
-     <ImageBackground
-       source={require("../images/bgImage.png")}
-       style={styles.imageBackground}
-     >
-       <Text style={styles.title}>ConnectoChat !</Text>
-       <View style={styles.box}>
-         {/* user types name */}
-         <TextInput
-           style={styles.textInput}
-           value={name}
-           onChangeText={setName}
-           placeholder="Your name"
-         />
-         <Text style={styles.chooseBgColor}>Choose Background Color</Text>
-          {/* user selects backgroung color */}
+const Start = ({ navigation }) => {
+  const [name, setName] = useState('');
+  const colors = ['#090C08', '#474056', '#8A95A5', '#B9C6AE'];
+  const [background, setBackground] = useState('');
+
+  // Initialize Firebase Auth
+  const auth = getAuth();
+
+  const signInUser = () => {
+    signInAnonymously(auth)
+      .then(result => {
+        navigation.navigate("Chat", { name: name, background: background, userID: result.user.uid });
+        Alert.alert("Signed in Successfully!");
+      })
+      .catch((error) => {
+        Alert.alert("Unable to sign in, try later again.");
+      });
+  };
+
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        source={require("../images/bgImage.png")}
+        style={styles.imageBackground}
+      >
+        <Text style={styles.title}>ConnectoChat!</Text>
+        <View style={styles.box}>
+          <TextInput
+            style={styles.textInput}
+            value={name}
+            onChangeText={setName}
+            placeholder="Your name"
+          />
+          <Text style={styles.chooseBgColor}>Choose Background Color</Text>
           <View style={styles.colorButtonContainer}>
             {colors.map((color, index) => (
               <TouchableOpacity
@@ -59,21 +60,21 @@ const Start = ({ navigation }) => {
               />
             ))}
           </View>
-          {/* to start chat */}
           <TouchableOpacity
             accessible={true}
             accessibilityRole="button"
             accessibilityHint="Lets you choose to enter the chat room"
             style={styles.button}
-            onPress={signInUser}>
-        
-           <Text style={styles.buttonText}>Start Chatting</Text>
-         </TouchableOpacity>
-       </View>
-     </ImageBackground>
-   </View>
- );
-}
+            onPress={signInUser}
+          >
+            <Text style={styles.buttonText}>Start Chatting</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -95,7 +96,6 @@ const styles = StyleSheet.create({
     margin: 25,
   },
   box: {
-    // backgroundColor: '#ffffff', 
     backgroundColor: '#f2f2f2',
     borderRadius: 4,
     width: '88%',
@@ -115,13 +115,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
   },
-  chooseBgColor:{
+  chooseBgColor: {
     color: '#757083',
     fontSize: 16,
     fontWeight: '300',
     opacity: 100,
   },
-  colorButtonContainer:{
+  colorButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
   },
@@ -130,12 +130,12 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     margin: 5
-},
-selectedColor:{
+  },
+  selectedColor: {
     borderColor: '#c0c0c0',
     borderWidth: 1,
-},
-  button:{
+  },
+  button: {
     alignItems: 'center',
     backgroundColor: '#757083',
     borderRadius: 4,
@@ -150,4 +150,5 @@ selectedColor:{
     color: '#FFFFFF',
   }
 });
+
 export default Start;
