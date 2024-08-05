@@ -19,24 +19,43 @@ AsyncStorage
 Installation
 
 Clone the repository:
+
 sh
+
 Copy code
+
 git clone https://github.com/haleytolar/Chat-App
+
 Install dependencies:
+
 sh
+
 Copy code
+
 npm install
+
 Set up Firebase:
+
 Create an account and start a new project.
+
 Set up the database under Build -> Firestore Database.
+
 Activate storage.
+
 Change rules from:
+
 js
+
 Copy code
+
 allow read, write: if false;
+
 to:
+
 js
+
 Copy code
+
 allow read, write: if true;
 
 
