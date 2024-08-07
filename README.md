@@ -1,15 +1,11 @@
-📱 Mobile Chat App
+Mobile Chat App
 
-Overview
+This mobile chat app is built using react native and provides a user friendly experience that allows photos, geo-locations, and messages to be sent from one user to another.
 
-A mobile chat application built using React Native. This user-friendly app provides a seamless chat interface and advanced features for effortlessly sharing images and location in real time.
+How to use 
+The user will open the app and find a welcome page which asks for them to input a name and select a color for the chat screen. After doing so, the user will be directed into a chat where they can send messages, their geo-location, and also gives them the option to send a picture from their camera roll or take a picture. The data is stored both online and offline, but the app will still require an internet connection to be used.
 
-Key Features
 
-User Customization: Users will be directed to a page where they can input their name and select a background color for the chat screen.
-Chat Interface: The page will present the ongoing conversation and feature a text input field where you can type your message, along with a submit button to send it.
-Multimedia Support: In the chat, users can share images and their location. The data is stored both online and offline for easy access.
-Dependencies
 
 React Native
 Expo
@@ -24,7 +20,7 @@ sh
 
 Copy code
 
-git clone https://github.com/haleytolar/Chat-App
+git clone https://github.com/skhan139/Chat-App
 
 Install dependencies:
 
